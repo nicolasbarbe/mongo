@@ -24,7 +24,7 @@ func NewMongo(cs string, db string) *Mongo {
   }
 }
 
-func (this *Mongo) DocumentExists(collectionName string, id interface{}) bool {
+func (this *Mongo) Exists(collectionName string, id interface{}) bool {
   collection := this.database.C(collectionName)
   count, err := collection.FindId(id).Limit(1).Count()
   if err != nil {
@@ -36,7 +36,7 @@ func (this *Mongo) DocumentExists(collectionName string, id interface{}) bool {
   return false
 }
 
-func (this *Mongo) CreateDocument(collectionName string, document ...interface{}) {
+func (this *Mongo) Create(collectionName string, document ...interface{}) {
   collection := this.database.C(collectionName)
   err := collection.Insert(document)
   if err != nil {
