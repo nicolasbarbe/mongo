@@ -13,7 +13,7 @@ type Mongo struct {
 func NewMongo(cs string, db string) *Mongo {
   session, err := mgo.Dial(cs)
   if err != nil {
-    log.Fatal(err)
+    log.Fatal("Cannot connect to mongo server: %s", err)
   }
 
   database := session.DB(db)
